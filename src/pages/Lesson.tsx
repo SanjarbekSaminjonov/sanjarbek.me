@@ -2,6 +2,7 @@ import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {FullLessonObj} from "../types";
 import {getData} from "../apiCalls/axios";
+import {Loader} from "../components/Loader";
 
 export const Lesson = () => {
   const pathname = window.location.pathname
@@ -12,12 +13,17 @@ export const Lesson = () => {
   }, [pathname])
 
   return (
-    <div>
-      <Link to={"/academy"}>Academy</Link> {" > "}
-      <Link to={`/academy/${lesson.course?.slug}`}>{lesson.course?.title}</Link> {" > "}
-      <Link to={`/academy/${lesson.course?.slug}/${lesson.unit?.slug}`}>{lesson.unit?.title}</Link> {" > " + lesson.title}
-      <h1 className={"text-center text-4xl my-5"}>{lesson.title}</h1>
-      <div dangerouslySetInnerHTML={{__html: lesson.description}}></div>
-    </div>
+    <>{
+      lesson.id ? (
+        <div>
+          <Link to={"/academy"}>Academy</Link> {" > "}
+          <Link to={`/academy/${lesson.course?.slug}`}>{lesson.course?.title}</Link> {" > "}
+          <Link
+            to={`/academy/${lesson.course?.slug}/${lesson.unit?.slug}`}>{lesson.unit?.title}</Link> {" > " + lesson.title}
+          <h1 className={"text-center text-4xl my-5"}>{lesson.title}</h1>
+          <div dangerouslySetInnerHTML={{__html: lesson.description}}></div>
+        </div>
+      ) : <div className={"flex justify-center"}><Loader/></div>
+    }</>
   )
 }
