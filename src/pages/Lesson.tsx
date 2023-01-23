@@ -17,9 +17,9 @@ export const Lesson = () => {
       lesson.id ? (
         <div>
           <Link to={"/academy"}>Academy</Link> {" > "}
-          <Link to={`/academy/${lesson.course?.slug}`}>{lesson.course?.title}</Link> {" > "}
+          <Link to={`/academy/${lesson.course.slug}`}>{lesson.course.title}</Link> {" > "}
           <Link
-            to={`/academy/${lesson.course?.slug}/${lesson.unit?.slug}`}>{lesson.unit?.title}</Link> {" > " + lesson.title}
+            to={`/academy/${lesson.course.slug}/${lesson.unit.slug}`}>{lesson.unit.title}</Link> {" > " + lesson.title}
           <h1 className={"text-center text-4xl my-5"}>{lesson.title}</h1>
           <div dangerouslySetInnerHTML={{__html: lesson.description}}></div>
         </div>

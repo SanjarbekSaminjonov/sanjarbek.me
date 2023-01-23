@@ -1,11 +1,11 @@
 export const Loader = () => {
-     let circleCommonClasses = 'h-2.5 w-2.5 bg-current rounded-full';
+  let circleCommonClasses = 'h-10 w-10 bg-current rounded-full';
 
-     return (
+  return (
     <div className='flex'>
-         <div className={`${circleCommonClasses} mr-1`}></div>
-         <div className={`${circleCommonClasses} mr-1`}></div>
-         <div className={`${circleCommonClasses}`}></div>
+      <div className={`${circleCommonClasses} m-5`}></div>
+      <div className={`${circleCommonClasses} m-5`}></div>
+      <div className={`${circleCommonClasses} m-5`}></div>
     </div>
-     );
+  );
 };

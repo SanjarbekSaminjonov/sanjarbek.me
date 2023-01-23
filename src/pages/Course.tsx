@@ -21,7 +21,7 @@ export const Course = () => {
           <img src={course.image} className={"h-24 mx-auto"} alt={course.title}/>
           <div dangerouslySetInnerHTML={{__html: course.description}}></div>
           <ul>
-            {course.units?.map((unit) => {
+            {course.units.map((unit) => {
               return (
                 <li className={"my-2"} key={unit.id}>
                   <Link to={`/academy/${course.slug}/${unit.slug}`}>{unit.title} [{unit.lessons_count}]</Link>
