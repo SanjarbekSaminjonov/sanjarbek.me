@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://api.saminjonov.uz';
+const BASE_URL = 'https://api.saminjonov.uz';
 
 export const getData = (pathname: string) => {
   if (pathname[pathname.length - 1] !== '/') {
