@@ -6,7 +6,6 @@ export const getData = (pathname: string) => {
   if (pathname[pathname.length - 1] !== '/') {
     pathname += '/';
   }
-  console.log(BASE_URL + pathname);
   return axios.get(BASE_URL + pathname)
     .then((response) => response.data)
     .catch((error) => {
