@@ -1,29 +1,36 @@
 import './App.css';
 import React from 'react';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import {Header} from "./components/Header";
 import {Home} from "./pages/Home";
-import {Academy} from "./pages/Academy";
-import {Course} from "./pages/Course";
-import {Unit} from "./pages/Unit";
-import {Container} from "./components/Container";
-import {Lesson} from "./pages/Lesson";
+import {Academy} from "./pages/Academy/Academy";
+import {Course} from "./pages/Academy/Course";
+import {Unit} from "./pages/Academy/Unit";
+import {Lesson} from "./pages/Academy/Lesson";
+import {AcademyCoursesProvider} from "./context/Academy/AcademyCourses";
+import {CourseProvider} from "./context/Academy/CourseUnits";
+import {UnitProvider} from "./context/Academy/UnitLessons";
+import {LessonProvider} from "./context/Academy/LessonContents";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <BrowserRouter>
-          <Header/>
-          <Container>
-            <Routes>
-              <Route path="/" element={<Home/>}/>
-              <Route path="/academy" element={<Academy/>}/>
-              <Route path="/academy/:courseSlug" element={<Course/>}/>
-              <Route path="/academy/:courseSlug/:unitSlug" element={<Unit/>}/>
-              <Route path="/academy/:courseSlug/:unitSlug/:lessonSlug" element={<Lesson/>}/>
-            </Routes>
-          </Container>
+            <AcademyCoursesProvider>
+              <CourseProvider>
+                <UnitProvider>
+                  <LessonProvider>
+                    <Routes>
+                      <Route path="/" element={<Home/>}/>
+                      <Route path="/academy" element={<Academy/>}/>
+                      <Route path="/academy/:courseSlug" element={<Course/>}/>
+                      <Route path="/academy/:courseSlug/:unitSlug" element={<Unit/>}/>
+                      <Route path="/academy/:courseSlug/:unitSlug/:lessonSlug" element={<Lesson/>}/>
+                    </Routes>
+                  </LessonProvider>
+                </UnitProvider>
+              </CourseProvider>
+            </AcademyCoursesProvider>
         </BrowserRouter>
       </header>
     </div>
