@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://api.saminjonov.uzm';
+const BASE_URL = 'http://api.saminjonov.uz';
 
 export const getData = (pathname: string) => {
   return axios.get(BASE_URL + pathname + '/')
