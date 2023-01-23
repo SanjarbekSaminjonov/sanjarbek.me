@@ -19,9 +19,9 @@ export const Academy = () => {
       <h1 className={"text-center text-4xl my-5"}>Academy</h1>
 
       <>{
-        courses.length ? (
+        courses?.length ? (
           <>{
-            courses.map((course) => (
+            courses?.map((course) => (
               <div key={course.id}
                    className={"flex flex-wrap  sm:flex-nowrap items-center justify-center sm:justify-between border my-4"}>
                 <div className={"w-1/4"}>
