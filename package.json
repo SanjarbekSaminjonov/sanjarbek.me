@@ -1,7 +1,6 @@
 {
   "homepage": ".",
   "name": "saminjonov.uz.frontend",
-  "proxy": "http://api.saminjonov.uz",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

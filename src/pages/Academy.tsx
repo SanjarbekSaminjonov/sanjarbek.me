@@ -13,7 +13,6 @@ export const Academy = () => {
     getData(pathname).then((courses) => setCourses(courses))
   }, [pathname])
 
-
   return (
     <div>
       <h1 className={"text-center text-4xl my-5"}>Academy</h1>
