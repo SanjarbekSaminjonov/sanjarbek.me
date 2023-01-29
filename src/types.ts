@@ -80,3 +80,17 @@ export type LessonContextType = {
   fullLessons: FullLessonObj[]
   setFullLessons: React.Dispatch<React.SetStateAction<FullLessonObj[]>>
 }
+
+export type PostObj = {
+  title: string
+  slug: string
+  date: string
+}
+
+export type FullPostObj = {
+  title: string
+  slug: string
+  description: string
+  image: string
+  date: string
+}
