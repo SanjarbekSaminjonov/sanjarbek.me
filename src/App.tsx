@@ -10,6 +10,8 @@ import {AcademyCoursesProvider} from "./context/Academy/AcademyCourses";
 import {CourseProvider} from "./context/Academy/CourseUnits";
 import {UnitProvider} from "./context/Academy/UnitLessons";
 import {LessonProvider} from "./context/Academy/LessonContents";
+import {BlogList} from "./pages/Blog/BlogList";
+import {BlogDetail} from "./pages/Blog/BlogDetail";
 
 function App() {
   return (
@@ -26,6 +28,8 @@ function App() {
                       <Route path="/academy/:courseSlug" element={<Course/>}/>
                       <Route path="/academy/:courseSlug/:unitSlug" element={<Unit/>}/>
                       <Route path="/academy/:courseSlug/:unitSlug/:lessonSlug" element={<Lesson/>}/>
+                      <Route path="/blog" element={<BlogList/>}/>
+                      <Route path="/blog/:postSlug" element={<BlogDetail/>}/>
                     </Routes>
                   </LessonProvider>
                 </UnitProvider>

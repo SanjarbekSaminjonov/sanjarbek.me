@@ -1,25 +1,27 @@
 import {useContext, useEffect, useState} from "react";
-import {FullLessonObj} from "../../types";
+import {useParams} from "react-router-dom";
+
 import {getData} from "../../apiCalls/axios";
 import {Loader} from "../../components/Loader";
-import {LessonContext} from "../../context/Academy/LessonContents";
 import {Navbar} from "../../components/Navbar";
 import {Container} from "../../components/Container";
+import {LessonContext} from "../../context/Academy/LessonContents";
+import {FullLessonObj} from "../../types";
 
 export const Lesson = () => {
-  const pathname = window.location.pathname
+  const {courseSlug, unitSlug, lessonSlug} = useParams()
   const {fullLessons, setFullLessons} = useContext(LessonContext)
   const [lesson, setLesson] = useState(
-    fullLessons.find((lesson) => lesson.slug === pathname.split("/")[4]) || {} as FullLessonObj
+    fullLessons.find((lesson) => lesson.slug === lessonSlug) || {} as FullLessonObj
   )
 
   useEffect(() => {
     if (lesson.id) return
-    getData(pathname).then((lesson) => {
+    getData(`/academy/${courseSlug}/${unitSlug}/${lessonSlug}/`).then((lesson) => {
       setFullLessons([...fullLessons, lesson])
       setLesson(lesson)
     })
-  }, [pathname, setFullLessons, fullLessons, lesson])
+  }, [courseSlug, unitSlug, lessonSlug, setFullLessons, fullLessons, lesson])
 
   return (
     <>{
@@ -34,7 +36,7 @@ export const Lesson = () => {
             <div dangerouslySetInnerHTML={{__html: lesson.description}}></div>
           </Container>
         </div>
-      ) : <div className={"flex justify-center"}><Loader/></div>
+      ) : <Loader/>
     }</>
   )
 }

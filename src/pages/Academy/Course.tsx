@@ -1,34 +1,36 @@
 import {useContext, useEffect, useState} from "react";
-import {Link} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 
-import {Loader} from "../../components/Loader";
-import {CourseContext} from "../../context/Academy/CourseUnits";
 import {getData} from "../../apiCalls/axios";
-import {FullCourseObj} from "../../types";
 import {Navbar} from "../../components/Navbar";
+import {Loader} from "../../components/Loader";
 import {Container} from "../../components/Container";
+import {CourseContext} from "../../context/Academy/CourseUnits";
+import {FullCourseObj} from "../../types";
 
 export const Course = () => {
-  const pathname = window.location.pathname
+  const {courseSlug} = useParams()
   const {fullCourses, setFullCourses} = useContext(CourseContext)
   const [course, setCourse] = useState<FullCourseObj>(
-    fullCourses.find((course) => course.slug === pathname.split("/")[2]) || {} as FullCourseObj
+    fullCourses.find((course) => course.slug === courseSlug) || {} as FullCourseObj
   )
 
   useEffect(() => {
     if (course.id) return
-    getData(pathname).then((course) => {
+    getData(`/academy/${courseSlug}/`).then((course) => {
       const courses = [...fullCourses, course]
       setFullCourses(courses)
       setCourse(course)
     })
-  }, [pathname, setFullCourses, fullCourses, course])
+  }, [courseSlug, setFullCourses, fullCourses, course])
 
   return (
     <>{
       course.id ? (
         <div>
-          <Navbar items={[{title: "Academy", link: "/academy"}]} currentPath={course.title}/>
+          <Navbar items={[
+            {title: "Academy", link: "/academy"}
+          ]} currentPath={course.title}/>
           <Container>
             <img src={course.image} className={"h-24 mx-auto"} alt={course.title}/>
             <div dangerouslySetInnerHTML={{__html: course.description}}></div>
@@ -44,7 +46,7 @@ export const Course = () => {
             </ul>
           </Container>
         </div>
-      ) : <div className={"flex justify-center"}><Loader/></div>
+      ) : <Loader/>
     }</>
   )
 }

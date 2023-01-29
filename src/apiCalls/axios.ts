@@ -2,11 +2,8 @@ import axios from 'axios';
 
 const BASE_URL = 'https://api.saminjonov.uz';
 
-export const getData = (pathname: string) => {
-  if (pathname[pathname.length - 1] !== '/') {
-    pathname += '/';
-  }
-  return axios.get(BASE_URL + pathname)
+export const getData = (endpoint: string) => {
+  return axios.get(BASE_URL + endpoint)
     .then((response) => response.data)
     .catch((error) => {
       console.log(error);
